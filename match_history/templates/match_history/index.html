@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Match History</title>
-</head>
-<body>
-    <h1>Welcome to this meme I made</h1>
-    <form action="{% url 'match_history:search_summoner' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" placeholder="SummonerName" id="summonerName" name="summoner_name"/>
-        <input type="submit" value="Sumbit" />
-    </form>
-    {% if error_message %}
-        <h3>{{ error_message }}</h3>
+{% extends 'home/base.html' %}
+
+{% block body %}
+
+    {% if summoner %}
+    <div class="container-fluid">
+        <h2>{{ summoner.summoner_name }}</h2>
+        <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{{ summoner.profile_icon_id }}.png" />
+        <p>{{ summoner.summoner_level }}</p>
+    </div>
     {% endif %}
+
+
     {% if match_history %}
         <h2>Match History</h2>
         {% for match in match_history %}
@@ -25,5 +22,4 @@
             <h4>Date - {{ match.timestamp }}</h4><br>
         {% endfor %}
     {% endif %}
-</body>
-</html>
+{% endblock %}

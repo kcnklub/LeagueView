@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'match_history.apps.MatchHistoryConfig',
+    'home.apps.HomeConfig'
 ]
 
 MIDDLEWARE = [

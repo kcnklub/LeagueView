@@ -17,66 +17,75 @@ class Account(models.Model):
 
 class Match(models.Model):
     game_id = models.IntegerField()
-    ranked = models.BooleanField()
+    mode = models.CharField(max_length=30, null=True)
 
     # can determine red teams also
     blue_team_win = models.CharField(max_length=10)
-    blue_team_first_blood = models.BooleanField()
-    blue_team_first_tower = models.BooleanField()
-    blue_team_first_inhib = models.BooleanField()
-    blue_team_first_baron = models.BooleanField()
-    blue_team_first_herald = models.BooleanField()
+    blue_team_first_blood = models.NullBooleanField()
+    blue_team_first_tower = models.NullBooleanField()
+    blue_team_first_inhib = models.NullBooleanField()
+    blue_team_first_baron = models.NullBooleanField()
+    blue_team_first_herald = models.NullBooleanField()
 
     # blue team details
-    blue_team_id = models.IntegerField()
-    blue_team_baron_kills = models.IntegerField()
-    blue_team_dragon_kills = models.IntegerField()
-    blue_team_tower_kills = models.IntegerField()
-    blue_team_rift_herald = models.IntegerField()
-    blue_team_ban1 = models.IntegerField()
-    blue_team_ban2 = models.IntegerField()
-    blue_team_ban3 = models.IntegerField()
-    blue_team_ban4 = models.IntegerField()
-    blue_team_ban5 = models.IntegerField()
+    blue_team_id = models.IntegerField(null=True)
+    blue_team_baron_kills = models.IntegerField(null=True)
+    blue_team_dragon_kills = models.IntegerField(null=True)
+    blue_team_tower_kills = models.IntegerField(null=True)
+    blue_team_rift_herald = models.IntegerField(null=True)
+    blue_team_ban1 = models.IntegerField(null=True)
+    blue_team_ban2 = models.IntegerField(null=True)
+    blue_team_ban3 = models.IntegerField(null=True)
+    blue_team_ban4 = models.IntegerField(null=True)
+    blue_team_ban5 = models.IntegerField(null=True)
 
     # red team details
-    red_team_id = models.IntegerField()
-    red_team_baron_kills = models.IntegerField()
-    red_team_dragon_kills = models.IntegerField()
-    red_team_tower_kills = models.IntegerField()
-    red_team_rift_herald = models.IntegerField()
-    red_team_ban1 = models.IntegerField()
-    red_team_ban2 = models.IntegerField()
-    red_team_ban3 = models.IntegerField()
-    red_team_ban4 = models.IntegerField()
-    red_team_ban5 = models.IntegerField()
+    red_team_id = models.IntegerField(null=True)
+    red_team_baron_kills = models.IntegerField(null=True)
+    red_team_dragon_kills = models.IntegerField(null=True)
+    red_team_tower_kills = models.IntegerField(null=True)
+    red_team_rift_herald = models.IntegerField(null=True)
+    red_team_ban1 = models.IntegerField(null=True)
+    red_team_ban2 = models.IntegerField(null=True)
+    red_team_ban3 = models.IntegerField(null=True)
+    red_team_ban4 = models.IntegerField(null=True)
+    red_team_ban5 = models.IntegerField(null=True)
+
+    def __str__(self):
+        return str(self.game_id)
 
 
 class Player(models.Model):
 
     # summoner stats
-    player_id = models.IntegerField()
+    participant_id = models.IntegerField()
     team_id = models.IntegerField()
+    game_id = models.IntegerField()
     champion_id = models.IntegerField()
     summoner1_id = models.IntegerField()
     summoner2_id = models.IntegerField()
+    summoner_id = models.IntegerField(null=True)
 
     # gameplay stats
-    item0 = models.IntegerField()
-    item1 = models.IntegerField()
-    item2 = models.IntegerField()
-    item3 = models.IntegerField()
-    item4 = models.IntegerField()
-    item5 = models.IntegerField()
-    kills = models.IntegerField()
-    deaths = models.IntegerField()
-    assists = models.IntegerField()
-    largest_killing_spree = models.IntegerField()
-    largest_multi_kill = models.IntegerField()
-    double_kills = models.IntegerField()
-    triple_kills = models.IntegerField()
-    quadra_kills = models.IntegerField()
-    penta_kills = models.IntegerField()
+    item0 = models.IntegerField(null=True)
+    item1 = models.IntegerField(null=True)
+    item2 = models.IntegerField(null=True)
+    item3 = models.IntegerField(null=True)
+    item4 = models.IntegerField(null=True)
+    item5 = models.IntegerField(null=True)
+    item6 = models.IntegerField(null=True)
+    kills = models.IntegerField(null=True)
+    deaths = models.IntegerField(null=True)
+    assists = models.IntegerField(null=True)
+    largest_killing_spree = models.IntegerField(null=True)
+    largest_multi_kill = models.IntegerField(null=True)
+    double_kills = models.IntegerField(null=True)
+    triple_kills = models.IntegerField(null=True)
+    quadra_kills = models.IntegerField(null=True)
+    penta_kills = models.IntegerField(null=True)
+
+    def __str__(self):
+        return str(self.game_id) + " - " + str(self.participant_id)
 
 
 
